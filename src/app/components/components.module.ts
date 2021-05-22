@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
@@ -14,7 +13,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     IonicModule,
     
   ],
-  declarations: [SpinnerComponent],
-  exports:[SpinnerComponent]
+  declarations: [],
+  exports:[]
 })
 export class ComponentsPageModule {}
