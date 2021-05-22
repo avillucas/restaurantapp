@@ -11,3 +11,5 @@ DEFENIR TECNOLOGIAS    (preliminar )
   firebase     : base de datos , storage de imagenes  
   github : repositorio 
   Una rama por feature  ( o cambio que tengamos que hacer ) que luego se integra  a develop hasta que la funcionalidad se termine y pasa a master 
+
+Prueba
