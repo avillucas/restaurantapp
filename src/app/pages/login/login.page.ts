@@ -1,9 +1,11 @@
+import { SpinnerService } from './../../services/spinner.service';
 import { LoginService } from './../../services/login.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { LoginTestData } from '../../entities/loginTestData';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 
 @Component({
@@ -20,7 +22,8 @@ export class LoginPage implements OnInit {
     private toastService:ToastService,
     public loginService: LoginService,
     private router: Router,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public SpinnerService: SpinnerService
   ) {
   }
 
@@ -44,15 +47,15 @@ export class LoginPage implements OnInit {
     if (!this.ionicForm.valid) {
       this.toastService.presentSuccess('Por favor revise los datos ingresados.');
       return false;
-    } else {
-      // @todo spinner present 
+    } else {      
+      this.SpinnerService.mostrarSpinner();
       this.loginService.login(this.ionicForm.value).subscribe(
         async (res) => {
-          //@todo spinner dismiss ;
-          this.router.navigateByUrl('/dashboard', { replaceUrl: true });
+          this.SpinnerService.ocultarSpinner();
+          this.router.navigateByUrl('/home', { replaceUrl: true });
         },
         async (res) => {                  
-          //@todo spinner dissmiss
+          this.SpinnerService.ocultarSpinner();
           this.toastService.presentDanger('Usuario o password incorrecto.');
         }
       );
