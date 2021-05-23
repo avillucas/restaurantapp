@@ -1,10 +1,8 @@
-import { SpinnerService } from './../../services/spinner.service';
 import { LoginService } from './../../services/login.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { LoginTestData } from '../../entities/loginTestData';
 import { SpinnerService } from 'src/app/services/spinner.service';
 
 

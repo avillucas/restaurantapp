@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver } from '@angular/core';
-import { SpinnerService } from '../services/spinner.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-home',
