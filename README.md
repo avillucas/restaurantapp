@@ -12,3 +12,5 @@ DEFENIR TECNOLOGIAS    (preliminar )
   github : repositorio 
   Una rama por feature  ( o cambio que tengamos que hacer ) que luego se integra  a develop hasta que la funcionalidad se termine y pasa a master 
 
+# seed
+firebase data:set /usuarios seed/usuarios.json -f restaurantApp
