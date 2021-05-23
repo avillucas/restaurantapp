@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ComponentFactoryResolver } from '@angular/core';
+import { SpinnerService } from '../services/spinner.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,20 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
 
+  constructor(
+    private spinnerSvc: SpinnerService
+  ) {
+  }
+
+  
+  /** Probando spinner */
+  mostrarSpinner(){
+    this.spinnerSvc.mostrarSpinner();
+
+    setTimeout(() => {
+      this.spinnerSvc.ocultarSpinner();
+      console.log("prueba");
+    }, 5000);
+  }
 }
