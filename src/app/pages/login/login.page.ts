@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { SysError } from '../../entities/sysError';
 
 
 @Component({
@@ -45,16 +46,14 @@ export class LoginPage implements OnInit {
     if (!this.ionicForm.valid) {
       this.toastService.presentSuccess('Por favor revise los datos ingresados.');
       return false;
-    } else {      
-      this.SpinnerService.mostrarSpinner();
+    } else {            
       this.loginService.login(this.ionicForm.value).subscribe(
-        async (res) => {
-          this.SpinnerService.ocultarSpinner();
+        async (res) => {          
           this.router.navigateByUrl('/home', { replaceUrl: true });
         },
-        async (res) => {                  
-          this.SpinnerService.ocultarSpinner();
-          this.toastService.presentDanger('Usuario o password incorrecto.');
+        async (res) => {        
+          //@todo revisar metodo                    
+          throw new SysError('Usuario o password incorrecto.');
         }
       );
     }

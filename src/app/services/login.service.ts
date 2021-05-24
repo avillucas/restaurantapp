@@ -4,6 +4,7 @@ import { StorageService } from './storage.service';
 import { LoginTestData } from '../entities/loginTestData';
 import { SysError } from '../entities/sysError';
 import { USUARIOS_TEST } from '../../seed/usuarios';
+import { SpinnerService } from './spinner.service';
  
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,22 @@ export class LoginService {
   isAuthenticated : BehaviorSubject<boolean>= new BehaviorSubject<boolean>(null);      
 
   constructor(    
-    private storageService:StorageService
+    private storageService:StorageService,
+    private spinnerService:SpinnerService
+
   ) {
   }
 
   login(postData : { username:string , password:string } ): Observable<any> {    
-    throw new SysError('Aun no implementado.');
-   //@todo completar
-   return null;
+    this.spinnerService.mostrarSpinner();
+    //@todo completar
+    return new Observable(
+      resolve =>{        
+        setTimeout(()=>{      
+          throw new SysError('Aun no implementado.');
+        },1300);    
+      }
+    );       
   }
 
   register(postData: {username:string, password:string}): Observable<any> { 
