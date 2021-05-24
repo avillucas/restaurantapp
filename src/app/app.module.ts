@@ -9,8 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { SysErrorHandler } from './services/sysErrorHandler';
@@ -27,9 +25,7 @@ import { SpinnerService } from './services/spinner.service';
     IonicModule.forRoot(), 
     AppRoutingModule,
     CommonModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebase),    
     AngularFireAuthModule,
     NgxSpinnerModule,
     BrowserAnimationsModule

@@ -43,12 +43,14 @@ export class LoginPage implements OnInit {
 
   async login() {
     //    
+    this.SpinnerService.mostrarSpinner();
     if (!this.ionicForm.valid) {
       this.toastService.presentSuccess('Por favor revise los datos ingresados.');
       return false;
     } else {            
-      this.loginService.login(this.ionicForm.value).subscribe(
+      this.loginService.login(this.ionicForm.value).then(
         async (res) => {          
+          this.SpinnerService.ocultarSpinner();
           this.router.navigateByUrl('/home', { replaceUrl: true });
         },
         async (res) => {        
