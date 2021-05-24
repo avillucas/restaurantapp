@@ -66,10 +66,7 @@ export class LoginService {
     }
   }
 
-  async register(postData: {
-    username: string;
-    password: string;
-  }): Promise<User> {
+  async register(postData: {username: string;password: string;}): Promise<User> {
     try {
       const { user } = await this.fireAuth.createUserWithEmailAndPassword(
         postData.username,
