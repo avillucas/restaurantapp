@@ -1,4 +1,4 @@
-[{
+export const USUARIOS_TEST = [{
     "id":1,
     "nombre":"Dueño 1",
     "username":"hector@lodetito.com.ar",
@@ -16,4 +16,4 @@
     "username":"mozo1@lodetito.com.ar",
     "password":"1111"
   }
-]
+];

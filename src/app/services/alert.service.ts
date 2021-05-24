@@ -11,7 +11,7 @@ export class AlertService {
 
   showSysError(error:SysError){
     //@todo pasar a alert estetico
-    alert('Ha ocurrido un error:'+error.message);
+    alert('Ha ocurrido un error:'+error.getAlert());
   }
 
   showSucess(message:string){

@@ -1,19 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Lo de Tito</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content>  
+  
   <form [formGroup]="ionicForm" (ngSubmit)="login()" novalidate>
     <ion-grid>
       <ion-row>
         <ion-col>
-          
+          <ion-img src="assets/logo/logo_white_large.png"  alt="Lo de tito"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>          
             <ion-label>Correo</ion-label>
-            <ion-input type="email" formControlName="username" required></ion-input>
-          
+            <ion-input type="email" formControlName="username" required></ion-input>          
           <!-- user error messages -->
           <div *ngIf="(username.dirty || username.touched) && username.errors" class="errors ion-padding">
             <span *ngIf="username.errors?.required"> El correo es requerido.</span>
@@ -35,8 +32,8 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" expand="block" color="dark" >Ingresar</ion-button>          
-          <ion-button type="button" expand="block" color="secondary"  [routerLink]="['/register']" >¡ Crear una cuenta !</ion-button>              
+          <ion-button type="submit" expand="block" color="tertiary" >Ingresar</ion-button>          
+          <ion-button type="button" expand="block" color="tertiary"  [routerLink]="['/register']" >¡ Registrarse como cliente !</ion-button>              
         </ion-col>
       </ion-row>
     </ion-grid>

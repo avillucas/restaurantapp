@@ -15,12 +15,14 @@ export class SysErrorHandler implements ErrorHandler {
     private vibration: VibrationService
   ) {}
 
-  handleError(err: any): void {
+  handleError(err: any): void {    
     let error:SysError;
     // do something with the error    
     if(err instanceof SysError){      
       error = err;      
     }else if( err instanceof Error){      
+      console.log(err.message,'name', err.name);
+      
       error = new SysError(err.message);
     }else if( typeof err  === 'string'){
       error = new SysError(err);

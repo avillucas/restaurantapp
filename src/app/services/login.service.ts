@@ -3,18 +3,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 import { LoginTestData } from '../entities/loginTestData';
 import { SysError } from '../entities/sysError';
-
+import { USUARIOS_TEST } from '../../seed/usuarios';
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  protected usuariosTest;
   isAuthenticated : BehaviorSubject<boolean>= new BehaviorSubject<boolean>(null);      
 
   constructor(    
     private storageService:StorageService
   ) {
-  
   }
 
   login(postData : { username:string , password:string } ): Observable<any> {    
@@ -32,30 +33,11 @@ export class LoginService {
   logout() {
     this.isAuthenticated.next(false);
     return this.storageService.logout();
-  }
+  }  
 
   //@todo tomar esto del listado para el seeder que popule la base de datos
-  getUsuariosTest( ) : LoginTestData[]{
-    return  [
-      {
-        id:1,
-        nombre:'Dueño 1',
-        username:'hector@lodetito.com.ar',
-        password:'1111'
-      },
-      {
-        id:2,
-        nombre:'Cocinero 1 ',
-        username:'cocinero1@lodetito.com.ar',
-        password:'1111'
-      },
-      {
-        id:3,
-        nombre:'Mozo 1 ',
-        username:'mozo1@lodetito.com.ar',
-        password:'1111'
-      },
-    ];        
+  getUsuariosTest( ) : LoginTestData[]{        
+    return USUARIOS_TEST; 
   }
 
   getUsuarioTest(id:number):LoginTestData{
