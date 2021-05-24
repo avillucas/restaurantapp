@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 import { LoginTestData } from '../entities/loginTestData';
+import { SysError } from '../entities/sysError';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,13 @@ export class LoginService {
   }
 
   login(postData : { username:string , password:string } ): Observable<any> {    
+    throw new SysError('Aun no implementado.');
    //@todo completar
    return null;
   }
 
   register(postData: {username:string, password:string}): Observable<any> { 
+    throw new SysError('Aun no implementado.');
     //@todo completar
     return null;    
   }
@@ -31,7 +34,7 @@ export class LoginService {
     return this.storageService.logout();
   }
 
-  //@todo tomar esto del listado para el seeder
+  //@todo tomar esto del listado para el seeder que popule la base de datos
   getUsuariosTest( ) : LoginTestData[]{
     return  [
       {
