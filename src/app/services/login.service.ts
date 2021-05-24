@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
-import { StorageService } from './storage.service';
 import { LoginTestData } from '../entities/loginTestData';
 import { SysError } from '../entities/sysError';
 import { USUARIOS_TEST } from '../../seed/usuarios';
-import { SpinnerService } from './spinner.service';
 import { User } from '../entities/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 import auth from 'firebase/firebase-auth';
@@ -12,7 +10,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
-import { switchMap } from 'rxjs/operators';
+import { first, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +21,7 @@ export class LoginService {
 
   public user$: Observable<User>;
 
-  constructor(
-    private storageService: StorageService,
+  constructor(    
     private fireAuth: AngularFireAuth,
     private fireStore: AngularFirestore
   ) {
@@ -36,11 +33,16 @@ export class LoginService {
         return of(null);
       })
     );
-  }
+  }  
 
-  async resetPassword(email: string): Promise<void> {
+  isLoggedIn() {
+    return this.fireAuth.authState.pipe(first()).toPromise();
+ }
+ 
+
+  async resetPassword(postData: {username: string}): Promise<void> {
     try {
-      return this.fireAuth.sendPasswordResetEmail(email);
+      return this.fireAuth.sendPasswordResetEmail(postData.username);
     } catch (error) {
       throw new SysError('Ocurrio al comunicarse con el servidor', error);
     }
@@ -50,7 +52,7 @@ export class LoginService {
     try {
       const { user } = await this.fireAuth.signInWithPopup(
         new auth.GoogleAuthProvider()
-      );
+      );      
       this.updateUserData(user);
       return user;
     } catch (error) {
@@ -72,6 +74,7 @@ export class LoginService {
         postData.username,
         postData.password
       );
+      this.sendVerificationEmail();
       return user;
     } catch (error) {
       throw new SysError('Ocurrio al comunicarse con el servidor', error);
@@ -83,12 +86,11 @@ export class LoginService {
       const { user } = await this.fireAuth.signInWithEmailAndPassword(
         postData.username,
         postData.password
-      );
-      this.updateUserData(user);
-      //@todo storage
+      );      
+      this.updateUserData(user);      
       return user;
     } catch (error) {
-      throw new SysError(error);
+      throw error;
     }
   }
 
@@ -113,6 +115,11 @@ export class LoginService {
     };
 
     return userRef.set(data, { merge: true });
+  }
+
+  isEmailVerified(user:User):boolean
+  {
+    return user.emailVerified === true ? true: false;
   }
 
   getUsuariosTest(): LoginTestData[] {

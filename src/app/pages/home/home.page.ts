@@ -1,27 +1,18 @@
-import { Component, ComponentFactoryResolver } from '@angular/core';
-import { SpinnerService } from 'src/app/services/spinner.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-
-
-  constructor(
-    private spinnerSvc: SpinnerService
-  ) {
-  }
-
+export class HomePage implements OnInit {
   
-  /** Probando spinner */
-  mostrarSpinner(){
-    this.spinnerSvc.mostrarSpinner();
+  public folder: string;
+  
+  constructor(private activatedRoute: ActivatedRoute) { }
 
-    setTimeout(() => {
-      this.spinnerSvc.ocultarSpinner();
-      console.log("prueba");
-    }, 5000);
+  ngOnInit() {
+    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 }
