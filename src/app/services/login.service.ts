@@ -122,9 +122,9 @@ export class LoginService {
     return USUARIOS_TEST;
   }
 
-  getUsuarioTest(id: number): LoginTestData {
+  getUsuarioTest(uid: string): LoginTestData {
     const users = this.getUsuariosTest();
-    return users.find((data: LoginTestData) => data.id == id);
+    return users.find((data: LoginTestData) => data.uid == uid);
   }
 
 }

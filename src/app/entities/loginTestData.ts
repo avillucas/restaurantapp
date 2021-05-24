@@ -1,5 +1,5 @@
 export interface LoginTestData{
-    id:number
+    uid:string
     nombre:string
     username:string
     password:string

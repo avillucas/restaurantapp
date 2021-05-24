@@ -33,6 +33,12 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  resetForm(){
+    this.username.setValue('');
+    this.password.setValue('');
+    this.confirm.setValue('');
+  }
+
   checkPassSame() {
     let pass = this.ionicRegister.value.password;
     let passConf = this.ionicRegister.value.confirm;
@@ -40,7 +46,7 @@ export class RegisterPage implements OnInit {
       this.errorMessage = '';
       return false;
     } else {
-      this.errorMessage = 'Password did not match.';
+      this.errorMessage = 'Las contraseñas no coinciden.';
       return true;
     }
   }
@@ -63,7 +69,7 @@ export class RegisterPage implements OnInit {
       if (!this.ionicRegister.valid) {
         this.toastService.presentDanger(
           'Por favor revise los datos ingresados.'
-        );
+        );        
       } else {
         this.spinnerService.mostrarSpinner();
         //
@@ -71,6 +77,7 @@ export class RegisterPage implements OnInit {
           async (res) => {
             this.spinnerService.ocultarSpinner();
             this.toastService.presentSuccess('El usuario pudo ser creado.');
+            this.resetForm();
           },
           async (error) => {
             this.spinnerService.ocultarSpinner();
