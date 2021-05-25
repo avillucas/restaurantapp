@@ -45,21 +45,21 @@ export class LoginPage implements OnInit {
     try {      
       this.SpinnerService.mostrarSpinner();
       if (!this.ionicForm.valid) {
-        this.toastService.presentSuccess('Por favor revise los datos ingresados.');
-        
+        this.toastService.presentSuccess('Por favor revise los datos ingresados.');        
       } else {
         this.loginService.login(this.ionicForm.value).then(
           async (res) => {
             this.SpinnerService.ocultarSpinner();
-            this.router.navigateByUrl('/tabs/tab1/home', { replaceUrl: true });
+            this.router.navigateByUrl('/dashboard/home', { replaceUrl: true });
           },
-          async (error) => {
+          async (error) => {            
+            this.SpinnerService.ocultarSpinner();
             this.toastService.presentDanger('Usuario o password incorrecto.');            
           }
         );
       }
-    } catch (error) {
-      throw error;
+    } catch (error) {      
+      throw new SysError(error);
     }
   }
 

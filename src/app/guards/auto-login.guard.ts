@@ -11,11 +11,10 @@ export class AutoLoginGuard implements CanLoad {
   constructor(private loginService: LoginService, private router: Router) {}
 
   async canLoad(): Promise<boolean> {
-    const user = await this.loginService.isLoggedIn();
+    const user = await this.loginService.isLoggedIn();    
     if (user) {
-      this.router.navigateByUrl('/tabs/tab1/home', { replaceUrl: true });
-      return true;
+      this.router.navigateByUrl('/dashboard/home', { replaceUrl: true });      
     }
-    return false;
+    return true;
   }
 }

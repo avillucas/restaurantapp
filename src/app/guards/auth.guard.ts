@@ -11,10 +11,10 @@ export class AuthGuard implements CanLoad {
   constructor(private loginService: LoginService, private router: Router) {}
 
   async canLoad(): Promise<boolean> {
-    const user = await this.loginService.isLoggedIn();
+    const user = await this.loginService.isLoggedIn();    
     if (user) {
       return true;
-    }
+    }    
     this.router.navigateByUrl('/login');
     return false;
   }

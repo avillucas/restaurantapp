@@ -19,18 +19,18 @@ export class SysErrorHandler implements ErrorHandler {
     let error:SysError;
     // do something with the error    
     if(err instanceof SysError){      
-      error = err;      
-    }else if( err instanceof Error){      
-      console.log(err.message,'name', err.name);
-      
+            
+      //disparar la accion de error 
+    this.alertService.showSysError(err);        
+    this.spinnerService.ocultarSpinner();
+    this.vibration.on20Seconds();
+    }
+    else if( err instanceof Error){      
       error = new SysError(err.message);
     }else if( typeof err  === 'string'){
       error = new SysError(err);
-    }    
-    //disparar la accion de error 
-    this.alertService.showSysError(error);        
-    this.spinnerService.ocultarSpinner();
-    this.vibration.on20Seconds();
+    } 
+    console.log(error);
   }
   
 }

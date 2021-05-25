@@ -90,6 +90,10 @@ export class LoginService {
       this.updateUserData(user);      
       return user;
     } catch (error) {
+      //@todo agregar todos los codigos de error https://firebase.google.com/docs/auth/admin/errors
+      if(error.code == 'auth/user-not-found'){
+        throw  'El usuario no existe ';
+      }
       throw error;
     }
   }
@@ -98,7 +102,7 @@ export class LoginService {
     try {
       this.fireAuth.signOut();
     } catch (error) {
-      throw new SysError(error);
+      throw error;
     }
   }
 
