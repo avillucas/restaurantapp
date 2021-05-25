@@ -4,9 +4,14 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'home/:id',
+    path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    canLoad:[AuthGuard],
+  //  canLoad:[AuthGuard],
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
+   // canLoad:[AuthGuard],
   },
   {
     path: '',
@@ -30,7 +35,7 @@ const routes: Routes = [
   {
     path: 'olvido',
     loadChildren: () => import('./pages/olvido/olvido.module').then( m => m.OlividoPageModule)
-  }  
+  },   
 ];
 
 @NgModule({

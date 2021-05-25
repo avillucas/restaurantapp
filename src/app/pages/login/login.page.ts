@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
         this.loginService.login(this.ionicForm.value).then(
           async (res) => {
             this.SpinnerService.ocultarSpinner();
-            this.router.navigateByUrl('/home', { replaceUrl: true });
+            this.router.navigateByUrl('/tabs/tab1/home', { replaceUrl: true });
           },
           async (error) => {
             this.toastService.presentDanger('Usuario o password incorrecto.');            
