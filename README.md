@@ -3,7 +3,6 @@
 # restaurantapp
 Aplicación para restaurante 
 
-
 #Reuniones 20-5-2021
 minuta https://docs.google.com/document/d/18OAVKG5YyjkQeQKJfdXmbLdMwFGmKjVhhnDH9v8EQAw/edit?usp=sharing
 
@@ -34,4 +33,18 @@ Generar login de usuarios
   
 
 Fecha de siguiente reunion jueves 17:15
+
+=======
+# recursos 
+https://drive.google.com/drive/folders/1RfdbQ7PNJ00lMu-A30_jgseP8RE3Iudl?usp=sharing
+DEFENIR TECNOLOGIAS    (preliminar )
+  Ionic
+  Angular 
+  Capacitor v2 
+  firebase     : base de datos , storage de imagenes  
+  github : repositorio 
+  Una rama por feature  ( o cambio que tengamos que hacer ) que luego se integra  a develop hasta que la funcionalidad se termine y pasa a master 
+
+# seed
+firebase data:set /usuarios seed/usuarios.json -f restaurantApp
 
